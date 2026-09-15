@@ -1,5 +1,7 @@
 package br.com.fintech.model;
 
+import java.util.Objects;
+
 public class Transacao {
     private String idTransacao;
     private String tipo;
@@ -48,6 +50,29 @@ public class Transacao {
     }
 
     @Override
+    public boolean equals(Object o) {
+        //verifica se é exatamente o mesmo objeto na memória
+        if(this == o) return true;
+        //verifica se o objeto recebido é nulo ou de outra classe, sendo o objeto
+        if(!(o instanceof Transacao)) return false;
+        //agora com instanceof, verifica se o é uma transacao, senao false.
+        Transacao outraTransacao = (Transacao) o;
+        //comparar IDs de forma segura
+        //pq ja foi validado q nunca pode ser nulo
+        return Objects.equals(this.idTransacao, outraTransacao.idTransacao);
+        //ai da pra ver ne, compara equals, se esse idTransacao é igual da outra tlgd
+        //hashSet não se põe no bagui, é meio que um ocasional.
+    }
+
+    @Override
+    public int hashCode(){
+        //o Objects.hash pega o idTransacao e faz a matematica automaticamente
+        //gerando um numero inteiro baseado no texto do ID
+        //basicamente sobrescrevemos o hashCode pra ele dar hashcodes baseados no idTransacao
+        return Objects.hash(idTransacao);
+    }
+
+    @Override
     public String toString(){
         return "Transacao[ " +
                 "id = " + idTransacao + '\'' +
@@ -56,6 +81,4 @@ public class Transacao {
                 ", tarifa = " + tarifa +
                 ']';
     }
-
-
 }
