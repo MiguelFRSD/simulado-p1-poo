@@ -26,7 +26,7 @@ public class CarteiraDigital {
         return transacoes;
     }
 
-    public void adicionarTransacao(Transacao transacao) throws LimiteTransacoesExcedidoException{
+    public void adicionarTransacao(Transacao transacao) throws LimiteTransacoesExcedidoException {
         //.size() pq é uma List e só fazer if transacoes >= da erro
         if(transacoes.size() >= capacidadeMaximaTransacoes){
             throw new LimiteTransacoesExcedidoException("Transacao '" + transacao.getIdTransacao() + "' vai além do limite de " + capacidadeMaximaTransacoes + " transacoes.");
